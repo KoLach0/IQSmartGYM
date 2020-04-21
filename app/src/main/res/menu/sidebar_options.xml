@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/op_inicio"
+        android:icon="@drawable/ic_inicio"
+        android:title="Inicio"/>
+    <item
+        android:id="@+id/op_entrenamiento"
+        android:icon="@drawable/ic_entrenamieno"
+        android:title="Entrenamiento"/>
+    <item
+        android:id="@+id/op_salud"
+        android:icon="@drawable/ic_salud"
+        android:title="Salud"/>
+    <item
+        android:id="@+id/op_perfil"
+        android:icon="@drawable/ic_perfil"
+        android:title="Perfil"/>
+
+<!--    <item android:title="Account Settings">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/nav_update"-->
+<!--                android:icon="@drawable/ic_update"-->
+<!--                android:title="Update Profile"/>-->
+<!--            <item-->
+<!--                android:id="@+id/nav_signout"-->
+<!--                android:icon="@drawable/ic_signout"-->
+<!--                android:title="Sign Out"/>-->
+<!--        </menu>-->
+<!--    </item>-->
+</menu>
