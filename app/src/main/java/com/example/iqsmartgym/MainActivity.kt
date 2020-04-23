@@ -1,65 +1,77 @@
 package com.example.iqsmartgym
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
+import android.support.v7.app.AppCompatActivity
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
+import android.view.animation.OvershootInterpolator
+import android.widget.Button
+import android.widget.TextView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var drawerLayout: DrawerLayout
+class MainActivity : AppCompatActivity() {
+    private var isvisible = false
+    var constraint: ConstraintLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(1024, 1024)
         setContentView(R.layout.activity_main)
-
-        var toolbar = findViewById<Toolbar>(R.id.toolbar)
-        var navView = findViewById<NavigationView>(R.id.nav_view)
-        drawerLayout = findViewById(R.id.drawer_layout)
-        setSupportActionBar(toolbar)
+        constraint = findViewById(R.id.con1)
+        val backarrow = findViewById<TextView>(R.id.textView5)
+        val imageback = findViewById<Button>(R.id.image)
 
 
-        val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, 0, 0
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        backarrow.setOnClickListener {
+            if (isvisible)
+                hideit()
+            else
+                showit()
+        }
 
-        navView.setNavigationItemSelectedListener(this)
+
+        imageback.setOnClickListener {
+            if (isvisible)
+                hideit()
+            else
+                showit()
+        }
     }
 
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun showit() {
+        isvisible = true
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(this, R.layout.activity_main2)
+
+        val transition = ChangeBounds()
+        transition.interpolator = OvershootInterpolator()
+        transition.duration = 1000
+
+        TransitionManager.beginDelayedTransition(constraint, transition)
+        constraintSet.applyTo(constraint)
     }
 
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        var fragmentTransaction = supportFragmentManager.beginTransaction()
-//        when (item.itemId) {
-//            R.id.nav_profile -> {
-//                var profileFragment = ProfileFragment()
-//                fragmentTransaction.add(R.id.container, profileFragment)
-//            }
-//            R.id.nav_messages -> {
-//                var messagesFragment = MessagesFragment()
-//                fragmentTransaction.add(R.id.container, messagesFragment)
-//            }
-//            R.id.nav_friends -> {
-//                var friendsFragment = FriendsFragment()
-//                fragmentTransaction.add(R.id.container, friendsFragment)
-//            }
-//            R.id.nav_update -> {
-//                Toast.makeText(this, "Perfil actualizado", Toast.LENGTH_LONG).show()
-//            }
-//            R.id.nav_signout -> {
-//                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_LONG).show()
-//            }
-//        }
-//        fragmentTransaction.commit()
-//        drawerLayout.closeDrawer(GravityCompat.START)
-//        return true
-//    }
+    private fun hideit() {
+        isvisible = false
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(this, R.layout.activity_main)
+
+        val transition = ChangeBounds()
+        transition.interpolator = OvershootInterpolator()
+        transition.duration = 1000
+
+        TransitionManager.beginDelayedTransition(constraint, transition)
+        constraintSet.applyTo(constraint)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (isvisible)
+            hideit()
+        else
+            showit()
+    }
 }
