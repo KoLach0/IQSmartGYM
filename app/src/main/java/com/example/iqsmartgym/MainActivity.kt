@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity() {
         val imageback = findViewById<Button>(R.id.image)
 
 
-        loginBottomNavigationView.setOnClickListener {
-
-                whenlogin()
-        }
 
         backarrow.setOnClickListener {
             if (isvisible)
@@ -49,6 +45,13 @@ class MainActivity : AppCompatActivity() {
             else
                 showit()
         }
+
+        loginBottomNavigationView.setOnClickListener {
+
+            whenlogin()
+
+        }
+
     }
 
     private fun whenlogin() {
