@@ -16,11 +16,12 @@
         />
 
     <include layout="@layout/login_layout"
-        android:id="@+id/login"
+        android:id="@+id/sign_in_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+
 
 
 </android.support.constraint.ConstraintLayout>

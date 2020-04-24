@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="Inicio"
+        android:iconTint="@color/colorAccent"
+        android:icon="@drawable/ic_salud"
+        />
+    <item
+        android:id="@+id/menu_salud"
+        android:title="Salud"
+        android:icon="@drawable/ic_inicio"
+        />
+</menu>

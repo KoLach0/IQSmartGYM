@@ -125,7 +125,7 @@
                 android:textColor="@color/white"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundbtn"
-                android:id="@+id/button2"
+                android:id="@+id/button_login"
         />
 
     </LinearLayout>
