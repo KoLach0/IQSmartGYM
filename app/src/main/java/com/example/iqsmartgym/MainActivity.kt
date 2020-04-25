@@ -3,7 +3,7 @@ package com.example.iqsmartgym
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
-import android.support.design.bottomappbar.BottomAppBar
+import android.support.design.internal.BottomNavigationMenu
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.transition.ChangeBounds
@@ -11,7 +11,7 @@ import android.transition.TransitionManager
 import android.view.animation.OvershootInterpolator
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,13 +23,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(1024, 1024)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.login)
         val loginBottomNavigationView = findViewById<Button>(R.id.button_login)
         constraint = findViewById(R.id.con1)
         val backarrow = findViewById<TextView>(R.id.textView5)
         val imageback = findViewById<Button>(R.id.image)
 
-
+        //val tabs: BottomNavigationView = findViewById(R.id.tabs)
 
         backarrow.setOnClickListener {
             if (isvisible)
@@ -37,35 +37,26 @@ class MainActivity : AppCompatActivity() {
             else
                 showit()
         }
-
-
         imageback.setOnClickListener {
             if (isvisible)
                 hideit()
             else
                 showit()
         }
-
         loginBottomNavigationView.setOnClickListener {
-
             whenlogin()
-
         }
 
     }
 
     private fun whenlogin() {
-
-
-
         setContentView(R.layout.activity_main3)
-
     }
     private fun showit() {
         isvisible = true
 
         val constraintSet = ConstraintSet()
-        constraintSet.clone(this, R.layout.activity_main2)
+        constraintSet.clone(this, R.layout.register)
 
         val transition = ChangeBounds()
         transition.interpolator = OvershootInterpolator()
@@ -79,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         isvisible = false
 
         val constraintSet = ConstraintSet()
-        constraintSet.clone(this, R.layout.activity_main)
+        constraintSet.clone(this, R.layout.login)
 
         val transition = ChangeBounds()
         transition.interpolator = OvershootInterpolator()
